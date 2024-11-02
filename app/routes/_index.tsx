@@ -1,9 +1,13 @@
+import { useState, useEffect } from "react";
 import { MetaFunction } from "@remix-run/node";
+import axios from "axios";
+
+//acernity
+import { AuroraBackground } from "~/components/ui/aurora-background";
+
+//component
 import TaskContainer from "~/components/TaskContainer";
 import Task from "~/components/Task";
-import { AuroraBackground } from "~/components/ui/aurora-background";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 export const meta: MetaFunction = () => {
   return [
@@ -12,6 +16,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+//props task dari api
 interface TaskProps {
   id: number;
   item: string;
@@ -19,15 +24,17 @@ interface TaskProps {
 }
 
 export default function Index() {
-  const [tasks, setTasks] = useState<TaskProps[]>([]);
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [newTask, setNewTask] = useState({ item: "", isComplete: false });
+  const [tasks, setTasks] = useState<TaskProps[]>([]); //state model task
+  const [isPopupVisible, setIsPopupVisible] = useState(false); // untuk pop up add task
+  const [newTask, setNewTask] = useState({ item: "", isComplete: false }); //state untuk dikirim ke post task
 
+  //handle pop up form task
   const handlePopUp = () => {
     console.log(isPopupVisible);
     setIsPopupVisible(!isPopupVisible);
   };
 
+  //handle edit checkbox
   const handleCheckbox = async (id: number) => {
     try {
       const updatedTasks = tasks.map((task) =>
@@ -43,6 +50,7 @@ export default function Index() {
     }
   };
 
+  //handle delete task
   const handleDelete = async (id: number) => {
     try {
       const updatedTasks = tasks.filter((task) => task.id !== id);
@@ -54,6 +62,7 @@ export default function Index() {
     }
   };
 
+  //handle add task
   const handleAddTask = async () => {
     try {
       const response = await axios.post("http://localhost:8080/todos", newTask);
