@@ -30,7 +30,7 @@ export default function Index() {
 
   //handle pop up form task
   const handlePopUp = () => {
-    console.log(isPopupVisible);
+    // console.log(isPopupVisible);
     setIsPopupVisible(!isPopupVisible);
   };
 
