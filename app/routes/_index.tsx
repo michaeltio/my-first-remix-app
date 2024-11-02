@@ -129,9 +129,9 @@ export default function Index() {
         </div>
       </div>
       {isPopupVisible && (
-        <div className="absolute w-screen h-screen bg-white/30 flex items-center justify-center">
+        <div className="absolute w-screen h-screen bg-black/30 flex items-center justify-center">
           <div className="bg-white p-5 rounded-lg shadow-lg">
-            <h2 className="text-xl mb-4">Add New Task</h2>
+            <h2 className="text-xl mb-4 text-center">Add New Task</h2>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -147,17 +147,17 @@ export default function Index() {
                 }
                 placeholder="Enter task"
               />
-              <div className="flex justify-end gap-4">
+              <div className="flex justify-between gap-4">
                 <button
                   type="button"
-                  className="bg-gray-500 text-white px-4 py-2 rounded"
+                  className="bg-gray-500 text-white px-4 py-2 rounded w-full"
                   onClick={handlePopUp}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                  className="bg-blue-500 text-white px-4 py-2 rounded w-full"
                 >
                   Add
                 </button>
