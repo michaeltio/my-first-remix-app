@@ -5,7 +5,11 @@ interface TaskContainerProps {
 }
 
 function TaskContainer({ children }: TaskContainerProps) {
-  return <div className="bg-white rounded-xl w-1/3 h-64">{children}</div>;
+  return (
+    <div className="backdrop-blur-sm bg-white/30 rounded-2xl w-1/3 h-96 p-3 flex flex-col gap-1 overflow-auto">
+      {children}
+    </div>
+  );
 }
 
 export default TaskContainer;
