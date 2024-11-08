@@ -69,6 +69,14 @@ export default function Index() {
       setTasks([...tasks, response.data]);
       setNewTask({ item: "", isComplete: false });
       setIsPopupVisible(false);
+
+      try {
+        const response = await axios.get("http://localhost:8080/todos");
+        setTasks(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+      
     } catch (error) {
       console.error("Error adding task:", error);
     }
